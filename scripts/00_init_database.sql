@@ -112,6 +112,7 @@ WITH (
 	TABLOCK
 );
 GO
+
 -- Verify data insertion
 SELECT COUNT(*) AS CustomerCount FROM gold.dim_customers;
 SELECT COUNT(*) AS ProductCount FROM gold.dim_products;
