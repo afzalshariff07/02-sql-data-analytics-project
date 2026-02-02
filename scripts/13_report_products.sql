@@ -50,7 +50,7 @@ SELECT
 FROM gold.fact_sales f
 LEFT JOIN gold.dim_products p
     ON f.product_key = p.product_key
-WHERE order_date IS NOT NULL)
+WHERE order_date IS NOT NULL)   -- only consider valid sales dates 
 
 , product_aggregations AS (
 /*---------------------------------------------------------------------------
@@ -77,6 +77,9 @@ GROUP BY
     subcategory,
     cost)
 
+/*---------------------------------------------------------------------------
+3) Final Query: Combines all product results into one output
+---------------------------------------------------------------------------*/
 SELECT
     product_key,
     product_name,
@@ -95,10 +98,12 @@ SELECT
     total_sales,
     total_quantity,
     avg_selling_price,
+
     -- Average Order Revenue (AOR)
     CASE WHEN total_sales = 0 THEN 0
          ELSE total_sales/ total_orders  
     END AS avg_order_revenue,
+
     -- Average Monthly Revenue
     CASE WHEN total_sales = 0 THEN 0
         ELSE total_sales / lifespan
