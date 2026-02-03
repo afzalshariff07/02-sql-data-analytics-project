@@ -1,4 +1,5 @@
 -- product_insights_summary.sql
+
 -- Switch to the Data Warehouse database
 USE DataWarehouse;
 GO
