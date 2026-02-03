@@ -20,6 +20,7 @@ Highlights:
        - average monthly revenue
 ===============================================================================
 */
+
 USE DataWarehouse;
 GO
 
